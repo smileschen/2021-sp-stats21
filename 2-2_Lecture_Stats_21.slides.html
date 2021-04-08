@@ -14385,7 +14385,7 @@ div.jp-OutputPrompt {
 <div class="slides"><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="Lecture-2-2">Lecture 2-2<a class="anchor-link" href="#Lecture-2-2">&#182;</a></h1><h1 id="Functions-in-Python">Functions in Python<a class="anchor-link" href="#Functions-in-Python">&#182;</a></h1><h2 id="Week-2-Friday">Week 2 Friday<a class="anchor-link" href="#Week-2-Friday">&#182;</a></h2><h2 id="Miles-Chen,-PhD">Miles Chen, PhD<a class="anchor-link" href="#Miles-Chen,-PhD">&#182;</a></h2><h3 id="Adapted-from-Think-Python-by-Allen-B.-Downey-and-A-Whirlwind-Tour-of-Python-by-Jake-VanderPlas">Adapted from <em>Think Python</em> by Allen B. Downey and <em>A Whirlwind Tour of Python</em> by Jake VanderPlas<a class="anchor-link" href="#Adapted-from-Think-Python-by-Allen-B.-Downey-and-A-Whirlwind-Tour-of-Python-by-Jake-VanderPlas">&#182;</a></h3>
+<h1 id="Lecture-2-2">Lecture 2-2<a class="anchor-link" href="#Lecture-2-2">&#182;</a></h1><h1 id="Functions-in-Python">Functions in Python<a class="anchor-link" href="#Functions-in-Python">&#182;</a></h1><h2 id="Week-2-Wednesday">Week 2 Wednesday<a class="anchor-link" href="#Week-2-Wednesday">&#182;</a></h2><h2 id="Miles-Chen,-PhD">Miles Chen, PhD<a class="anchor-link" href="#Miles-Chen,-PhD">&#182;</a></h2><h3 id="Adapted-from-Think-Python-by-Allen-B.-Downey-and-A-Whirlwind-Tour-of-Python-by-Jake-VanderPlas">Adapted from <em>Think Python</em> by Allen B. Downey and <em>A Whirlwind Tour of Python</em> by Jake VanderPlas<a class="anchor-link" href="#Adapted-from-Think-Python-by-Allen-B.-Downey-and-A-Whirlwind-Tour-of-Python-by-Jake-VanderPlas">&#182;</a></h3>
 </div>
 </div></section></section><section><section>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
@@ -16420,18 +16420,18 @@ print_twice	 quiet	 shouting	 stuff	 whisper	 x	 y	 z
 <pre>Variable      Type        Data/Info
 -----------------------------------
 cat           str         something else entirely
-cat_twice     function    &lt;function cat_twice at 0x000001AC2AD20DC8&gt;
+cat_twice     function    &lt;function cat_twice at 0x00000247892CEB88&gt;
 greeting      str         HI!!!
 j             tuple       n=3
-junk          function    &lt;function junk at 0x000001AC2AC209D8&gt;
+junk          function    &lt;function junk at 0x00000247891E5828&gt;
 line1         str         bidi bidi
 line2         str         bom bom
 math          module      &lt;module &#39;math&#39; (built-in)&gt;
-powersof      function    &lt;function powersof at 0x000001AC2AC20F78&gt;
-print_twice   function    &lt;function print_twice at 0x000001AC2AD24048&gt;
-quiet         function    &lt;function quiet at 0x000001AC2ACF1E58&gt;
-shouting      function    &lt;function shouting at 0x000001AC2ACF15E8&gt;
-stuff         function    &lt;function stuff at 0x000001AC2AC2DE58&gt;
+powersof      function    &lt;function powersof at 0x00000247892ACB88&gt;
+print_twice   function    &lt;function print_twice at 0x00000247892CEDC8&gt;
+quiet         function    &lt;function quiet at 0x00000247892A4B88&gt;
+shouting      function    &lt;function shouting at 0x00000247892A4318&gt;
+stuff         function    &lt;function stuff at 0x00000247891D0DC8&gt;
 whisper       NoneType    None
 x             int         3
 y             int         9
@@ -16836,7 +16836,29 @@ z             int         27
 
 </div>
 
-</div></div></section></section>
+</div></div></section></section><section><section>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="Scope-Order-in-Python">Scope Order in Python<a class="anchor-link" href="#Scope-Order-in-Python">&#182;</a></h1>
+</div>
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Taken from: <a href="https://realpython.com/python-scope-legb-rule/">https://realpython.com/python-scope-legb-rule/</a></p>
+<p>Python will search scopes in the following order:</p>
+<ul>
+<li><p>Local (or function) scope is the code block or body of any Python function. This Python scope contains the names that you define inside the function. These names will only be visible from the code of the function.</p>
+</li>
+<li><p>Enclosing (or nonlocal) scope is a special scope that only exists for functions nested inside other functions. If the local scope is an inner or nested function, then the enclosing scope is the scope of the outer or enclosing function. This scope contains the names that you define in the enclosing function. The names in the enclosing scope are visible from the code of the inner and enclosing functions.</p>
+</li>
+<li><p>Global scope is the top-most scope in a Python program, script, or module. This Python scope contains all of the names that you define at the top level of a program or a module. Names in this Python scope are visible from everywhere in your code.</p>
+</li>
+<li><p>Built-in scope is a special Python scope that's created whenever you run a script or open an interactive session. This scope contains names such as keywords, functions, exceptions, and other attributes that are built into Python.</p>
+</li>
+</ul>
+
+</div>
+</div></section></section>
 </div>
 </div>
 </body>
