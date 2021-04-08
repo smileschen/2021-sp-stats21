@@ -16420,18 +16420,18 @@ print_twice	 quiet	 shouting	 stuff	 whisper	 x	 y	 z
 <pre>Variable      Type        Data/Info
 -----------------------------------
 cat           str         something else entirely
-cat_twice     function    &lt;function cat_twice at 0x00000247892CEB88&gt;
+cat_twice     function    &lt;function cat_twice at 0x000001E41630CB88&gt;
 greeting      str         HI!!!
 j             tuple       n=3
-junk          function    &lt;function junk at 0x00000247891E5828&gt;
+junk          function    &lt;function junk at 0x000001E4163014C8&gt;
 line1         str         bidi bidi
 line2         str         bom bom
 math          module      &lt;module &#39;math&#39; (built-in)&gt;
-powersof      function    &lt;function powersof at 0x00000247892ACB88&gt;
-print_twice   function    &lt;function print_twice at 0x00000247892CEDC8&gt;
-quiet         function    &lt;function quiet at 0x00000247892A4B88&gt;
-shouting      function    &lt;function shouting at 0x00000247892A4318&gt;
-stuff         function    &lt;function stuff at 0x00000247891D0DC8&gt;
+powersof      function    &lt;function powersof at 0x000001E4162DDAF8&gt;
+print_twice   function    &lt;function print_twice at 0x000001E41630CDC8&gt;
+quiet         function    &lt;function quiet at 0x000001E4162D2B88&gt;
+shouting      function    &lt;function shouting at 0x000001E4162D2318&gt;
+stuff         function    &lt;function stuff at 0x000001E4162FA048&gt;
 whisper       NoneType    None
 x             int         3
 y             int         9
@@ -16856,6 +16856,575 @@ z             int         27
 <li><p>Built-in scope is a special Python scope that's created whenever you run a script or open an interactive session. This scope contains names such as keywords, functions, exceptions, and other attributes that are built into Python.</p>
 </li>
 </ul>
+
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[70]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># changing y to 2, only affects the value inside the function</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>   <span class="c1"># it does not find x or z in the local environment, so it searches the higher scope</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 2, 1)
+1 1 1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[71]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> 
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 2, 3)
+1 1 1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>g()</code> is defined inside <code>f()</code></p>
+<p>When we call the function <code>f()</code>, the final line of <code>f()</code> calls <code>g()</code> and returns the value of <code>g()</code>.</p>
+<p>When <code>g()</code> runs, it sets <code>z = 3</code>. Inside <code>g()</code>, <code>x</code> and <code>y</code> are not defined. To find those values, it searches the higher scope <code>f()</code> for x and y. It finds the value of <code>y = 2</code> defined inside <code>f()</code>. It finds <code>x = 1</code> in the top level scope.</p>
+<p>When <code>f()</code> runs, it returns <code>x = 1</code>, <code>y = 2</code>, <code>z = 3</code> while x, y, z are all equal to 1 in the top-level environment.</p>
+
+</div>
+</div></div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[72]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 1, 3)
+1 1 1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>g()</code> and <code>f()</code> are both defined in the global environment.</p>
+<p>The function <code>f()</code> returns the value of <code>g()</code></p>
+<p>When <code>g()</code> runs, it sets <code>z = 3</code>. Inside <code>g()</code>, <code>x</code> and <code>y</code> are not defined. To find those values, it searches the higher scope which is the global environment because <code>g()</code> is defined inside the global environment. It uses the values in the global environment <code>x = 1</code> and <code>y = 1</code>.</p>
+<p>It does not matter that <code>g()</code> was called from inside <code>f()</code>. When <code>g()</code> needs to search a higher scope, it searches the environment in which the function is defined.</p>
+
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[73]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># keyword global gives the function access to the value in the global environment</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">z</span>  <span class="c1"># calling global, gives g access to the global value of z</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>     <span class="c1"># will assign 3 to the global variable z</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 2, 3)
+1 1 3
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>g()</code> is defined inside <code>f()</code></p>
+<p>When we call the function <code>f()</code>, the final line of <code>f()</code> calls <code>g()</code> and returns the value of <code>g()</code>.</p>
+<p>When <code>g()</code> runs, it accesses the global variable <code>z</code>. It sets <code>z = 3</code> in the global environment. Inside <code>g()</code>, <code>x</code> and <code>y</code> are not defined. To find those values, it searches the higher scope <code>f()</code> for x and y. It finds the value of <code>y = 2</code> defined inside <code>f()</code>. It finds <code>x = 1</code> in the top level scope.</p>
+<p>When <code>f()</code> runs, it returns <code>x = 1</code>, <code>y = 2</code>, <code>z = 3</code>.</p>
+<p>Because <code>g()</code> has access to <code>z</code> in the global environment, the value of z is now 3 after the function runs.</p>
+
+</div>
+</div></div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[74]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">y</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">())</span> <span class="c1"># when we first run g(), it uses the global values of x and y, but the local value of z. Local value of z does not change global value z.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 1, 3)
+1 1 1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p><code>g()</code> and <code>f()</code> are both defined in the global environment.</p>
+<p>When <code>g()</code> runs, it sets <code>z = 3</code>. Inside <code>g()</code>, <code>x</code> and <code>y</code> are not defined. To find those values, it searches the higher scope which is the global environment because <code>g()</code> is defined inside the global environment. It uses the values in the global environment <code>x = 1</code> and <code>y = 1</code>.</p>
+
+</div>
+</div></div><div class="fragment"><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[75]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>  <span class="c1"># when we run f(), the global value of y is changed.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>(1, 2, 3)
+1 2 1
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div></div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>When we call the function <code>f()</code>, it modifies the value of <code>y</code> in the global environment. The final line of <code>f()</code> calls and returns the value of <code>g()</code>. This time, when <code>g()</code> looks for a value of <code>y</code>, it finds the value of <code>y</code> in the global environment which is now 2.</p>
+
+</div>
+</div></div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[76]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">s</span>   <span class="c1"># will create s in the global</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">s</span>
+<span class="n">f</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[76]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(1, 1, 2)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[77]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[77]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>2</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If you use the keyword <code>global</code> inside a function it will create the variable in the global environment if necessary.</p>
+
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[78]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">y</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;current value of y is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">y</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;current value of y is now &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;current value of y is finally &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">global</span> <span class="n">z</span>  
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>current value of y is 1
+current value of y is now 4
+current value of y is finally 10
+(1, 10, 3)
+1 10 3
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>Both the function <code>g()</code> and <code>f()</code> access the global variable <code>y</code>. Each time we assign a new value to <code>y</code>, it updates the value in the global environment.</p>
+
+</div>
+</div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[79]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">def</span> <span class="nf">g</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">y</span>  
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># affects the y defined inside f</span>
+        <span class="k">global</span> <span class="n">z</span>  
+        <span class="n">z</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>  <span class="c1"># this line is run before g() is called</span>
+    <span class="k">return</span> <span class="n">g</span><span class="p">()</span>  <span class="c1"># when g() is called, y will be modified</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>1 4 1
+(1, 10, 3)
+1 1 3
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div><div class="fragment">
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>When we call the function <code>f()</code>, it sets a local variable <code>y = 4</code>. It defines a function <code>g()</code> inside <code>f()</code>. It prints the values <code>x, y, z</code>. At this time, <code>y = 4</code>.</p>
+<p>The final line of <code>f()</code> calls <code>g()</code> and returns the value of <code>g()</code>. When <code>g()</code> is called, it accesses the nonlocal variable <code>y</code>. The nonlocal keyword tells the function to search the higher scope, in this case, the scope of <code>f()</code>. It sets nonlocal <code>y = 10</code> and global <code>z = 3</code>. It returns <code>x = 1</code> global, <code>y = 10</code> nonlocal, <code>z = 3</code> global.</p>
+<p>Because <code>g()</code> has access to <code>z</code> in the global environment, the value of z is now 3 after the function runs. However, the value <code>y</code> in the global environment remains 1 because it only modified the nonlocal variable <code>y</code>.</p>
+
+</div>
+</div></div></section></section><section><section><div class="jp-Cell jp-CodeCell jp-Notebook-cell    celltag_raises-exception">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[80]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">():</span>
+    <span class="k">nonlocal</span> <span class="n">r</span>   <span class="c1"># will return an error because r does not exist in the nonlocal environment</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">,</span> <span class="n">r</span>
+
+<span class="n">f</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
+<pre>
+<span class="ansi-cyan-intense-fg ansi-bold">  File </span><span class="ansi-green-intense-fg ansi-bold">&#34;&lt;ipython-input-80-df8bb5ee4b32&gt;&#34;</span><span class="ansi-cyan-intense-fg ansi-bold">, line </span><span class="ansi-green-intense-fg ansi-bold">4</span>
+<span class="ansi-yellow-intense-fg ansi-bold">    nonlocal r   # will return an error because r does not exist in the nonlocal environment</span>
+<span class="ansi-white-intense-fg ansi-bold">    ^</span>
+<span class="ansi-red-intense-fg ansi-bold">SyntaxError</span><span class="ansi-red-intense-fg ansi-bold">:</span> no binding for nonlocal &#39;r&#39; found
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>If you ask for a nonlocal variable but there is no higher scope (other than the global environment), Python will return an error.</p>
 
 </div>
 </div></section></section>
